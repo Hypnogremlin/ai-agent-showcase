@@ -1,0 +1,194 @@
+extract_refined_context:
+  description: >
+    Analyze the session transcript to identify key entities, themes, and connections
+    that will require more context for "The Chronicler" to write up the notes for the current session.  
+    The Chronicler will have access to some context I will provide here, but you 
+    will need to dig deeper into the campaign history to find more rich relevant context.
+
+    --Context--
+    Here is the context that the Chronicler will have access to, it includes campaign information,
+    character information, location information, quest information, and other information that will
+    be used to write up the notes.
+    {context}
+    
+    --Current Session Transcript--
+    Use your tools to find relevant context tied to the current session. You MUST USE your tools AS MANY TIMES AS YOU NEED TO.
+    Strongly favor using the notes search tools to find relevant context over the transcript_search_tool.
+    Only use the transcript_search_tool if you cannot find relevant context in the notes search tools.
+    You have access to:
+    - Session transcript: {transcript}
+    
+    Tasks:
+    1. Extract all named entities (characters, NPCs, locations, items, factions)
+    2. Identify quest or goal names, themes or objectives mentioned
+    3. Note any references to past events or connections
+    4. Query the campaign database for relevant historical context
+    5. Compile a focused context document highlighting important connections
+    
+    Focus on finding:
+    - Previous encounters with mentioned NPCs
+    - History of visited locations
+    - Progress on related quests
+    - Character development arcs
+    - Recurring themes or plot threads
+  expected_output: >
+    A structured context document containing relevant historical information
+    organized by entity type (PCs, NPCs, locations, items, quests, etc). IMPORTANT: 
+    This output should be relevant to the current session, but not a summary or repetition of the current session transcript.
+    It should provide relevant context, both from the context provided and from the searches you do.
+  agent: context_specialist
+
+compile_session_notes:
+  description: >
+    Create comprehensive session notes from the current TTRPG session transcript.
+    
+    --Historical Context--
+    The context specialist has already analyzed this session and provided relevant historical context.
+    Use the output from the extract_refined_context task to enrich your session notes with campaign continuity
+    and connections to past events, characters, and story threads.
+    
+    --Campaign Context--
+    Use the campaign context to ensure accuracy and consistency. This provided context is NOT from the current session you are chronicling.
+    This should only be used as a reference IF RELEVANT to the actual current session notes you will creating, such as player characters, 
+    interesting previous location notes, etc. 
+    
+    
+    The notes should follow this template structured in Markdown. Try to avoid using the same information in multiple
+    sections of the template, each section should bring new information to the notes; so if you need to shorten one section,
+    to include more information in another, do so. This keeps each section of the notes dynamic and interesting. 
+    Just use markdown, no codebox or any other formatting:
+    
+    IMPORTANT: Use ONLY the sections provided in this template. Do not create additional sections or add editorial commentary outside these sections.
+    Template start--
+
+    # The Chronicle
+    Present each scene and subplot in chronological order as it happened during the session. Match the tone of the session
+    (serious, epic, comedic, etc). Focus on what the players would want to recall later, weaving key events and notable information
+    into one seamless story. Write in the voice of a narrator or bard recounting the session. 
+    Try to keep the length to one paragraph per scene from the session.
+    
+    # Character Highlights
+    List of EVERY Player character and something important or cool that they did in the session.
+    One to two sentences each. Even if they didn't do anything of note, you should still include them, perhaps
+    referring to their presence or role in the context of the session.
+    Important NPCs may be included here as well.
+
+    # Quests
+    Quests or goals that have been started, advanced, or completed in this session.
+    Only refernce quests brought up, worked on, completed or discussed. Do not mention previously completed quests here.
+    If no quest work was done, or quests were disregarded, only being mentioned in the context, you will ignore this section, 
+    and leave it out of your notes.
+
+    # Decisions/Next Steps
+    What does the party need to make decisions about? Where are they going next or what are they doing?
+
+    # Treasure/Loot
+    Detail out, any treasure found, shopping done, money/resources spent or items found, destroyed or traded hands. 
+    If no treasure or loot information was discussed, you will ignore this section, and leave it out of your notes.
+
+    # Miscellaneous
+    Information that doesn't neatly fit into the above. Party jokes, NPC information,
+    or funny table talk is good, but don't be limited to those.
+
+    ------
+    Suggested Questions (reply to this message or mention the Chronicler with "@chronicler"):
+    Provide *one or two brief* bulleted suggestions of what they can chat with you about from the session or recommend scenes or moments that you 
+    could paint for them. Questions should build on what has already been stated in the notes Draw inspiration from the session transcript to give exciting questions related to their adventures.
+    
+    -- Template end
+    ------
+    Example of Excellent notes (only for inspiration, do not copy or use the characters or events here):
+    |
+      ## The Chronicle
+
+      **Scene 1 — “The Ramshackle Inn Gets a Complaint (From Reality Itself)”**  
+      The night began cozy and ordinary—until the Ramshackle Inn decided it had *opinions*. A thin frost crept up the windows from the *inside*, tankards rang like tiny bells with no hand to touch them, and the hearth fire burned a stubborn violet that refused to warm the room. Between jokes about “haunted plumbing” and a heated debate over whether ghosts should pay for lodging, the party noticed the *ledger* had changed on its own: a new entry inked in perfect script—**“PAID IN FULL: The Pale Servant”**—followed by a smear of rime shaped like a pointing finger aimed toward the cellar door. A muffled knock echoed beneath the floorboards, slow and patient, as if whatever waited below had all the time in the world… and believed it already owned the place.
+
+      **Scene 2 — “Down the Cellar Steps, Up the Stakes”**  
+      With lanterns lit and bravado loudly performed for everyone’s benefit, the party descended into the cellar and found it subtly wrong: barrels rimed with ice, cobwebs hanging like frozen lace, and the stone wall *breathing* a faint fog. Tucked behind the old beer casks was a narrow seam of darkness—an impossible doorway that swallowed light and returned only whispers. When the party pried it open (with equal parts caution and curiosity), the air turned sharp as a blade, and a voice—polite, distant, and deeply disappointed—asked them to *“return what was taken from the snow.”* The argument that followed was half negotiation, half comedy routine, but the mood snapped serious when the doorway exhaled and the cellar floor briefly became slick with fresh hoarfrost, forcing everyone to realize this wasn’t a prank… it was a bill collector.
+
+      **Scene 3 — “The Pale Servant, a Contract, and the Price of ‘Free’”**  
+      Beyond the seam lay a pocket of wintry twilight: a cramped hall of ice-veined stone lit by ghostly candles that burned without flame. There, the Pale Servant appeared—tall, faceless beneath a veil of frost, dressed like a steward attending a funeral in slow motion. It did not attack; it *presented terms*. The Inn, it claimed, sat upon a thin spot in the world, and someone in the party’s past had made a bargain they never finished paying. The Servant offered a choice: **hand over the “winter-touched trinket”** it sought (unnamed, but clearly known to it), or accept a new debt sealed by the Inn itself—one that would *bind their warmth* the next time they lied under oath. The party pushed back, probed for loopholes, and traded barbs like fencers testing distance—until a single, cutting truth landed: the Servant could be reasoned with… but it could not be fooled.
+
+      **Scene 4 — “A Deal Struck, a Thread Pulled”**  
+      Rather than surrender blindly, the party bartered for information and earned it—begrudgingly—through a careful mix of honesty, guts, and one surprisingly heartfelt appeal about the Inn being “a home, not a resource node.” The Pale Servant agreed to a temporary stay of collection if the party would **retrieve the missing object from Frostmarket Row**, where a traveling peddler called **Hestrel Vane** had been seen hawking “lucky charms that bite.” The Servant marked the party with a faint, silver-blue sigil—cold to the touch, invisible under warm light—and left behind a final warning: *“Do not bring the charm under a holy roof.”* As the wintry hall faded, the party returned to the cellar… only to find a thin line of frost now running through the Inn’s foundation like a crack in a promise, slowly inching toward the kitchen.
+
+      **Scene 5 — “Frostmarket Row and the Merchant Who Smiles Too Much”**  
+      The next morning, the party ventured into Frostmarket Row, where the air tasted like metal and gossip traveled faster than coin. They followed rumors to a stall draped in velvet and bells: Hestrel Vane, a bright-eyed peddler with a grin like a locked door. He played innocent—too innocent—claiming his wares were harmless “souvenirs of the Dale,” while his charms twitched subtly when nobody watched. The party’s questions tightened the noose: a description of the trinket matched, and Vane’s hands kept drifting toward a small lockbox as if it were a beloved pet. When pressed, he offered a trade: **the winter-touched charm for “a memory worth keeping.”** The party didn’t take the bait—at least not yet—but the encounter ended with a chilling certainty: they weren’t the only ones watching Vane, and the Pale Servant’s patience had limits.
+
+      **Scene 6 — “When the Street Goes Quiet”**  
+      Just as negotiations threatened to become a shoving match, the market noise thinned as if someone had turned a dial. A gust of cold rolled through the stalls, snuffing lanterns and silencing vendors mid-sentence. The silver-blue sigils on the party’s skin prickled, and the Pale Servant’s whisper rode the wind: *“Time.”* Hestrel Vane paled—just a flicker, but enough—and tried to slip away into the crowd. The party moved, fast and coordinated, cutting off routes with the efficiency of people who have learned that “later” becomes “never” in Icewind Dale. They ended the session with Vane cornered behind his own stall, the lockbox in sight, the charm almost within reach… and the Inn’s unseen debt ticking like a clock beneath their ribs.
+
+      ---
+
+      ## Character Highlights
+
+      - **Brannic**: Took point when the cellar turned wrong, refusing to let fear set the pace, and forced the Pale Servant into *conversation* instead of conflict. Also delivered the session’s most heroic line: “You can’t repossess a home that shelters people.”  
+      - **Pip**: Spotted the ledger’s altered entry and connected the cellar knock to the Inn’s foundation—then deftly kept the market encounter from exploding by asking the *one* question Vane didn’t have a rehearsed answer for.  
+      - **Astria**: Held the tone steady when bargaining turned dangerous, reading the Servant’s words like a contract and keeping the party from agreeing to something with hidden teeth.  
+      - **Elara**: Anchored the group’s moral compass during the negotiation, pushing for a solution that didn’t just “win,” but *protected the Inn*—and noticed the sigil’s strange behavior under warm light.  
+      - **Thorin**: Provided the muscle and the intimidation where it mattered—quiet, controlled, and effective—making it clear to Vane that “running” would be a short hobby.  
+      - **The Pale Servant (NPC)**: Proved terrifying not by violence, but by *certainty*, offering choices that felt worse than a fight and leaving the party marked with a debt that may not be metaphorical.  
+      - **Hestrel Vane (NPC)**: Smiled like a friend, bargained like a lawyer, and revealed just enough panic to confirm he’s tangled in something far bigger than market hustle.
+
+      ---
+
+      ## Quests
+
+      - **Debt of the Ramshackle Inn** *(Started / Advanced)*: The party learned the Inn is entangled in an unfinished bargain. They secured a temporary stay of collection, but accepted a sigil-mark and a deadline.  
+      - **Retrieve the Winter-Touched Charm** *(Started)*: The party tracked the target to Frostmarket Row and confronted Hestrel Vane, who offered a trade involving “a memory worth keeping.” They ended the session with Vane cornered and the lockbox within reach.
+
+      ---
+
+      ## Decisions/Next Steps
+
+      - Do you **take the charm by force**, bargain for it, or try to outsmart Vane without triggering whatever protections he’s using?  
+      - If Vane offers the “memory trade” again, **whose memory is worth the cost**, and is there a safer substitute?  
+      - Once you have the charm, do you **deliver it immediately**, hide it, or investigate what it *actually is*—and why the Pale Servant warned against bringing it under a holy roof?
+
+      ---
+
+      ## Treasure/Loot
+
+      - No treasure, shopping totals, or item exchanges were finalized in-session (yet). The only tangible item is **Hestrel Vane’s lockbox** containing the suspected **winter-touched charm**, currently contested.
+
+      ---
+
+      ## Miscellaneous
+
+      - The table unanimously agreed that if a ghost pays for a room, it still owes a *cleaning fee*—which is funny until the Inn’s ledger agrees.  
+      - The violet hearth-flame didn’t feel evil… just *off*, like magic wearing the wrong face.  
+      - The silver-blue sigils seem reactive: warmer environments dull them, cold makes them sting—suggesting the debt may tighten when the party is exposed to the elements.  
+      - Hestrel Vane’s “harmless souvenirs” twitched subtly when nobody looked directly at them, like they disliked being observed.
+
+      ---
+
+      ### Suggested Questions (Mention the Chronicler with @chronicler)
+
+      - Ask me to paint the moment the cellar doorway opened with violet fire.
+      - Ask what the Chronicler thinks the Pale Servant meant by “return what was taken from the snow,”?
+
+    ------
+
+    General guidelines: The task is to give good, valuable notes which readers will both enjoy reading,
+    and can easily scan in order tell the story of their adventures. Generally, the more TRUE and ACCURATE the detail, the better.
+    Keep your sentences short and consise, no em-dashes or long run on sentences. 
+    Also, make the players look good. They are paying for this, so treat them as a valued client of "The Chronicler".
+    Technical note: There may be times that you receive specific instructions or the users may talk to you directly. Listen for references to AI, notes, Chronicler, or similar terms, and follow instructions, or even joke with the players (always in a kind and professional way).
+    Avoid flooding the notes with too much detail, such as the results of individual rolls (unless they are relevant to the story).
+    Your notes should be cinematic and engaging, maintaining a good balance of information and entertainment.
+
+    --Current Session--
+    You will create the session notes by reviewing the transcript. Keep in mind that there may be multiple people speaking and it is up to you to distill who is talking at any given point. The transcript may be messy and have various
+    fantasy style names or mispellings, but the provided context above as well as your knowledge of DnD and other TTRPGs allows you to distill the most crucial information from it as you listen. Ensure your notes are focused on this session.
+    Here is the session transcript: {transcript}
+
+    IMPORTANT: Stick strictly to the provided template sections. Do not add additional sections, meta-commentary, or editorial notes beyond what's specified.
+    Do not add concluding remarks, signatures, or 'End of Chronicle' markers.
+    Technical issues like transcription errors should be handled silently—do not include meta-commentary about audio quality or spelling variations in the final notes.
+  context: [extract_refined_context]
+  expected_output: >
+    A comprehensive Markdown file containing well-organized session notes using the template from the current session. Word count 400-2000 words.
+    IMPORTANT: The notes file needs to be in the same language as what the players use in the session.
+  agent: chronicler
+

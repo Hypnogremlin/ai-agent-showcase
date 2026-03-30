@@ -1,0 +1,22 @@
+{
+  "primary": {
+    "provider": "anthropic",
+    "model": "claude-haiku-4-5",
+    "temperature": 0.8,
+    "max_output_tokens": 4096,
+    "streaming": true
+  },
+  "backup": {
+    "provider": "xai",
+    "model": "grok-4-1-fast",
+    "temperature": 0.8,
+    "max_output_tokens": 4096,
+    "streaming": true
+  },
+  "current_mode": "primary",
+  "role_overrides": {
+    "context_specialist": "backup",
+    "narrative_analyst": "backup",
+    "detail_analyst": "backup"
+  }
+}

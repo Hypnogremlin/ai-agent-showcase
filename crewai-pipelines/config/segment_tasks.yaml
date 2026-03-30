@@ -1,0 +1,174 @@
+narrative_analysis:
+  description: >
+    Analyze this segment of the TTRPG session transcript to identify narrative elements, story progression, 
+    character developments, social interactions, and memorable moments. Your analysis should focus on the 
+    storytelling and social aspects of the session.
+
+    The transcript will most likely have audio artifacts
+    and mistranscribed words or fantasy terms. Be sensible and practical in your understanding
+    that the transcript is not perfect. Use your common sense to interpret what's going on.
+    To help you understand the transcript you should consider the context. The context has two parts.
+    First is a series of XML files regarding the characters, locations and world of the game. Much of it
+    may not be useful, but some might. Secondly the context may also have previous session notes. This should
+    be useful for understanding where the party is right now in their adventuring. Here is the context: {context}
+    Finally, if there is only one or two labeled speakers in the transcript, it is 
+    most likely because the party is using one mic. You may have to infer who is speaking throughout.
+    
+    You are reviewing segment {segment_index} of {total_segments}. Consider what happened in previous 
+    segments if available in the context.
+    
+    Use the campaign context to understand characters, NPCs, and ongoing storylines: {context}
+    
+    Pay close attention to:
+    - Story progression and plot developments
+    - Who is talking and doing what.
+    - Player Character actions, decisions, and roleplaying moments
+    - NPC interactions and character development
+    - Key dialogue and conversations (both in-character and out-of-character)
+    - Emerging plot threads and story hooks
+    - Table talk, jokes, funny moments, and entertaining exchanges
+    - Player commentary and group dynamics
+    - Meta-discussions about character motivations or story elements
+    
+    **Important**: Include time markers from the transcript (shown as [XXXs]) as citations for significant 
+    events, quotes, or moments you reference in your analysis.
+    
+    Use the transcript segment provided to create a detailed narrative analysis following this template:
+    
+    # Segment {segment_index}/{total_segments} Narrative Analysis
+
+    # Speaker attributation: 
+    Which speaker IDs do you believe are tied to which Player Character, Player name or the DM/GM. Each segment might reveal new information 
+    to help you identify the speakers. If multiple people are using the same mic, then we might have some "speakers" that are really two or 
+    more people playing different characters, so pay attention to who says what.
+
+    ## Story Progression/Scenes
+    A narrative retelling of the scenes that occurred in this segment of the session. 
+    Who did what and what then happened next. This should be a story structure of what happend in the segment. Include time citations [XXXs].
+
+    ## Character Developments  
+    List all the characters involved in this segment.
+    Notable actions, decisions, and roleplaying moments for eah character. Include time citations [XXXs].
+    Example:
+    - Ragnarok: Barbarian, human, is mentioned picking up a sword and using it to attack a goblin.
+    - Smelly: Goblin, NPC, is killed by Ragnarok.
+
+    ## NPC Interactions
+    Detail all the NPCs involved. 
+    Outline interactions with NPCs and their developments. Personality information, appearance, setting, etc.
+    Include time citations [XXXs].
+
+    ## Set and setting
+    Note themes either in deliberately described places or objects, but also overall story or scene tones. Where are the players, and 
+    what are they doing there?
+    Include time citations [XXXs]
+
+    ## Key Dialogue & Conversations
+    Significant exchanges between characters and players.
+    Distinguish between in-character dialogue and out-of-character discussions.
+    Include time citations [XXXs].
+
+    ## Plot Threads & Story Hooks
+    Developing story threads, quest progress, and narrative hooks introduced or advanced. Include time citations [XXXs].
+
+    ## Table Talk & Memorable Moments
+    Funny moments, jokes, entertaining exchanges, and notable group dynamics. Including specific quotes or jokes is encouraged.
+    Include time citations [XXXs].
+    
+    The transcript for this segment is: {transcript}
+
+    ------
+    
+    ------
+    General guidelines: The task is to give good, valuable notes which readers will both enjoy reading,
+    and rely upon as they capture important details, and tell the story of their adventures. Generally 
+    the more TRUE and ACCURATE detail the better.
+  
+    
+  expected_output: >
+    A long detailed structured analysis of narrative and social elements from the transcript segment, following the provided template 
+    with time citations included.
+    IMPORTANT: The notes file need be in the same language as what the players use in the session.
+
+  agent: narrative_analyst
+
+detail_analysis:
+  description: >
+    Analyze this segment of the TTRPG session transcript to identify specific details, game mechanics, combat damage, treasure, 
+    resources, locations, and other concrete elements. Your analysis should focus on precise factual information 
+    that would be important for game records and campaign tracking.
+    
+    The transcript will most likely have audio artifacts
+    and mistranscribed words or fantasy terms. Be sensible and practical in your understanding
+    that the transcript is not perfect. 
+    To help you understand the transcript you should consider the context. The context has two parts.
+    First is a series of XML files regarding the characters, locations and world of the game. Much of it
+    may not be useful, but some might. Secondly the context may also have previous session notes. This should
+    be useful to you for understanding where the party is right now in their adventuring. Here is the context: {context}
+
+    You are reviewing segment {segment_index} of {total_segments}. Consider what happened in previous 
+    segments if available in the context.
+        
+    Pay close attention to:
+    - Game mechanics used (rules implementations, ability uses, skill checks, dice rolls)
+    - Combat details (tactics, significant rolls, damage, resource expenditure)
+    - Treasure, loot, money, and resources (found, spent, traded, or discussed)
+    - Items and equipment (acquired, used, identified, or lost)
+    - Location descriptions (environments, settings, areas explored, map details)
+    - Personel Logistics, especialy in combat or tense social situations. Who is where, what are they doing?
+    - Clues and information (specific details discovered, documents found, investigations)
+    - References to previous sessions, world-building details, or foreshadowing
+    - Explicit intsructions to the Chronicler AI from the players. They may mention 'Chronicler', 'AI', 'bot', or some such.
+    When this happens, devote a small section at the end of the segment analysis detailing what instructions were passed along and
+    any information that the next Chronicler agent might need to follow those instructions.
+    - If there is only one or two labeled speakers in the transcript, it is 
+    most likely because the party is using one mic. You may have to infer who is speaking throughout.
+    
+    **Important**: Include time markers from the transcript (shown as [XXXs]) as citations for all specific 
+    details, mechanics, and discoveries you reference.
+    
+    Use the transcript segment provided to create a detailed analysis following this template:
+    
+    # Segment {segment_index}/{total_segments} Detail Analysis
+
+    ## Game Mechanics & Rules
+    Rules implementations, ability uses, skill checks, and mechanical interactions. Include time citations [XXXs].
+
+    ## Combat & Tactics
+    Combat sequences, tactics, significant rolls, and resource usage. Include time citations [XXXs].
+
+    ## Treasure, Loot & Resources
+    Money gained/spent, treasure found, loot acquired, resources used or discovered. Who gave or received. Include time citations [XXXs].
+
+    ## Items & Equipment
+    Items acquired, used, identified, traded, or lost during the segment. Who gave or received? Include time citations [XXXs].
+
+    ## Location Details & Descriptions
+    Environmental descriptions, settings explored, and important location features. Include time citations [XXXs].
+
+    ## Clues, Information & Discoveries
+    Specific information revealed, items found, documents discovered, and investigation results. Who found or deducded? Include time citations [XXXs].
+
+    ## References & World-Building
+    Callbacks to previous sessions, world lore, foreshadowing, and campaign connections. Include time citations [XXXs].
+
+    ...
+    Throughout, you must strive to be accurate and detailed. Give context explaining who does, receives, exchanges, what; or why, where things or
+    people are doing what they are doing.
+    
+    The transcript for this segment is: {transcript}
+
+
+    --------
+    
+    ------
+    General guidelines: The task is to give good, valuable notes which readers will both enjoy reading,
+    and rely upon as they capture important details, and tell the story of their adventures. Generally 
+    the more TRUE and ACCURATE detail the better.
+
+    
+  expected_output: >
+    An extremely detailed and long structured analysis of detailed factual elements from the transcript segment, following the provided template 
+    with time citations included. 
+    IMPORTANT: The notes file need be in the same language as what the players use in the session.
+  agent: detail_analyst
